@@ -1,0 +1,26 @@
+{% extends 'partials/base.html' %}
+{% block title %}Home - STACMINIT{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h1 class="display-4 text-success">Discover Talented Students</h1>
+    <p class="lead">Explore the talents of students from different institutions.</p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4" style="height: 480px;">
+    {% for student in students %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ student.profile_image.url }}" class="card-img-top" alt="{{ student.user.username }}'s profile image">
+            <div class="card-body">
+                <h5 class="card-title text-success">{{ student.user.username }}</h5>
+                <p class="card-text"><strong>Institution:</strong> {{ student.institution }}</p>
+                <p class="card-text"><strong>State:</strong> {{ student.state_of_residence }}</p>
+                <a href="" class="btn btn-outline-success">View Talents</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

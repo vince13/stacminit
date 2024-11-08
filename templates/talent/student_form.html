@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+{% block title %}Affiliate As A Student{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg pb-5" style="width: 100%; max-width: 400px;">
+        <div class="card-body">
+            <h3 class="text-center text-success mb-4">Affiliate As A Student</h3>
+
+            <form method="post" action="{% url 'talent:register' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success w-100">Sign Up</button>
+            </form>
+
+            <p class="text-center mt-4">
+                Already have an account? <a href="{% url 'talent:login' %}" class="text-success">Log In</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
